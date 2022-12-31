@@ -22,7 +22,7 @@ function getPlayerChoice() {
 }
 
 //playRound() function takes the playerSelection and computerSelection
-//and returns a string that indicates the winner based on the value of
+//and returns an array of strings that indicates the winner based on the value of
 //the playerSelection and computerSelection.
 function playRound(playerSelection, computerSelection) {
 
