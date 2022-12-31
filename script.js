@@ -27,28 +27,50 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        return `You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats `+
-        `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`;
+        return [`You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats `+
+        `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`,'player'];
 
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return `You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats `+
-        `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`;
+        return [`You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats `+
+        `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`,'player'];
 
     } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        return `You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats `+
-        `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`;
+        return [`You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats `+
+        `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`,'player'];
     } else if (playerSelection === computerSelection) {
-        return "It's a tie!"
+        return ["It's a tie!",'']
     } else {
-        return `You Lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats `+
-        `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`;
+        return [`You Lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats `+
+        `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`,'computer'];
     }
 }
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
+//game() function runs the game for 5 rounds and log the result of
+//each round and the final result of the game after 5 rounds.
+function game(){
+    let playerSelection;
+    let computerSelection;
+    let playerScore = 0;
+    let computerScore = 0;
+    for(let i = 0; i<5;i++){
+        playerSelection = getPlayerChoice();
+        computerSelection = getComputerChoice();
+        let roundResults = playRound(playerSelection, computerSelection);
+        console.log(roundResults[0]);
+        if(roundResults[1] === 'player'){
+            playerScore++;
+        } else if(roundResults[1] == 'computer'){
+            computerScore++;
+        }
+    }
+    if(playerScore > computerScore){
+        console.log('You won!')
+    }else if(computerScore > playerScore){
+        console.log('You lost!');
+    }else{
+        console.log('It is a tie!');
+    }
+}
 
-console.log(playerSelection);
-console.log(computerSelection);
 
-console.log(playRound(playerSelection, computerSelection));
+game();
